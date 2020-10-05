@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class img1 extends Observable implements Runnable{

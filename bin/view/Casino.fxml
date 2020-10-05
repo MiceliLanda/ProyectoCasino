@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="217.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CasinoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="577.0" prefWidth="751.0" style="-fx-background-color: #9ab3f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CasinoController">
    <children>
-      <HBox alignment="CENTER" prefHeight="109.0" prefWidth="600.0">
+      <HBox alignment="CENTER" layoutX="-3.0" layoutY="106.0" prefHeight="244.0" prefWidth="751.0">
          <children>
             <ImageView fx:id="img1" fitHeight="122.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="img2" fitHeight="122.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="img3" fitHeight="121.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <VBox layoutX="-1.0" layoutY="124.0" prefHeight="94.0" prefWidth="600.0">
+      <VBox layoutX="72.0" layoutY="388.0" prefHeight="181.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0" spacing="60.0">
                <children>
-                  <Button fx:id="btnStopLeft" mnemonicParsing="false" onMouseClicked="#stop" text="STOP">
+                  <Button fx:id="btnStopLeft" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
                      <font>
                         <Font name="Baskerville Old Face" size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnStopCenter" mnemonicParsing="false" onMouseClicked="#stop" text="STOP">
+                  <Button fx:id="btnStopCenter" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
                      <font>
                         <Font name="Baskerville Old Face" size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnStopRight" mnemonicParsing="false" onMouseClicked="#stop" text="STOP">
+                  <Button fx:id="btnStopRight" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
                      <font>
                         <Font name="Baskerville Old Face" size="25.0" />
                      </font>
@@ -39,12 +41,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
                <children>
-                  <Button fx:id="btnStart" mnemonicParsing="false" onAction="#start" text="START">
+                  <Button fx:id="btnStart" mnemonicParsing="false" onAction="#start" style="-fx-background-color: #b9fffc;" text="START">
                      <font>
                         <Font name="Baskerville Old Face" size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnStopAll" mnemonicParsing="false" onMouseClicked="#stop" text="STOP ALL">
+                  <Button fx:id="btnStopAll" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP ALL">
                      <font>
                         <Font name="Baskerville Old Face" size="25.0" />
                      </font>
@@ -53,5 +55,15 @@
             </HBox>
          </children>
       </VBox>
+      <Label layoutX="254.0" layoutY="14.0" text="CasinUP" textFill="#b7ffff">
+         <font>
+            <Font name="Dyuthi Regular" size="67.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="472.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Resources/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
