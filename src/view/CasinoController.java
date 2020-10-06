@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -52,55 +51,74 @@ public class CasinoController implements Initializable,Observer{
     
     @FXML
     void start(ActionEvent event) {
-    	img1 hilo = new img1();
-    	img2 hilo2 = new img2();
-    	img3 hilo3 = new img3();
-    	
-    	hilo.addObserver(this);
-    	hilo2.addObserver(this);
-    	hilo3.addObserver(this);
-    	
-    	hiloSemaforo = new Thread(hilo);
-    	hiloSemaforo2 = new Thread(hilo2);
-    	hiloSemaforo3 = new Thread(hilo3);
-    	
-    	hiloSemaforo.setDaemon(true);
-    	hiloSemaforo2.setDaemon(true);
-    	hiloSemaforo3.setDaemon(true);
-    	
-    	hiloSemaforo.start();
-    	hiloSemaforo2.start();
-    	hiloSemaforo3.start();
+    	try {
+			btnStopAll.setVisible(true);
+			btnStopCenter.setVisible(true);
+			btnStopLeft.setVisible(true);
+			btnStopRight.setVisible(true);
+			btnStart.setVisible(false);
+			img1 hilo = new img1();
+			img2 hilo2 = new img2();
+			img3 hilo3 = new img3();
+
+			hilo.addObserver(this);
+			hilo2.addObserver(this);
+			hilo3.addObserver(this);
+
+			hiloSemaforo = new Thread(hilo);
+			hiloSemaforo2 = new Thread(hilo2);
+			hiloSemaforo3 = new Thread(hilo3);
+
+			hiloSemaforo.setDaemon(true);
+			hiloSemaforo2.setDaemon(true);
+			hiloSemaforo3.setDaemon(true);
+			hiloSemaforo.getName();
+			hiloSemaforo2.getName();
+			hiloSemaforo3.getName();
+
+			hiloSemaforo.start();
+			hiloSemaforo2.start();
+			hiloSemaforo3.start();
+		}catch (IllegalThreadStateException ex){
+			System.out.println("Error al iniciar Hilos"+ex);
+		}
     }
 
 	@FXML
     void stop(MouseEvent e) {
-    	if(e.getSource() ==btnStopLeft) {
-    		//if(StrImg.get(0) == img1.toString()||StrImg.get(1) == img1.toString()||StrImg.get(2) == img1.toString()) {
-        		imagen1.exit(img1);
-    		//}
-    	}
-    	if(e.getSource() ==btnStopRight) {
-    		System.out.println("derecha");
-    		imagen3.exit(img3);
-    	}
-    	if(e.getSource() ==btnStopCenter) {
-    		System.out.println("centro");
-    		imagen2.exit(img2);
-    	}
-    	if(e.getSource() ==btnStopAll) {
-    		System.out.println("todos");
-    		imagen1.exit(img1);
-			imagen2.exit(img2);
-			imagen3.exit(img3);
-    	}
+    	try {
+			if(e.getSource() ==btnStopLeft) {
+				imagen1.exit(img1);
+			}
+			if(e.getSource() ==btnStopRight) {
+				System.out.println("derecha");
+				imagen3.exit(img3);
+			}
+			if(e.getSource() ==btnStopCenter) {
+				System.out.println("centro");
+				imagen2.exit(img2);
+
+			}
+			if(e.getSource() ==btnStopAll) {
+				System.out.println("todos");
+				imagen1.exit(img1);
+				imagen2.exit(img2);
+				imagen3.exit(img3);
+			}
+		}catch (Exception ex){
+			System.out.println("Error al detener Hilo"+ex);
+		}
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		StrImg.add("img/pera.jpg");
-		StrImg.add("img/pina.jpg");
-		StrImg.add("img/sandia.jpg");	
+		StrImg.add("Resource/sandia.png");
+		StrImg.add("Resource/pina.png");
+		StrImg.add("Resource/pera.png");
+		btnStopAll.setVisible(false);
+		btnStopCenter.setVisible(false);
+		btnStopLeft.setVisible(false);
+		btnStopRight.setVisible(false);
 	}
 
 	@Override

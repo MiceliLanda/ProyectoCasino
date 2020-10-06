@@ -28,22 +28,25 @@ public class img1 extends Observable implements Runnable{
 	
 	@Override
 	public void run() {
-		while(exit) {
-			System.out.println("exit:"+exit);
-			setChanged();
-			this.notifyObservers(String.valueOf(turno));
-			System.out.println(turno);
-			try {
-				Thread.sleep(1000);
-			}catch(InterruptedException e) {
-				e.printStackTrace();
+		try{
+			while(true) {
+				setChanged();
+				this.notifyObservers(String.valueOf(turno));
+				System.out.println(turno);
+				try {
+					Thread.sleep(100);
+				}catch(InterruptedException e) {
+					System.out.println("error: "+e);
+				}
+				if(turno ==3) {
+					turno=1;
+				}
+				else {
+					turno++;
+				}
 			}
-			if(turno ==3) {
-				turno=1;
-			}
-			else {
-				turno++;
-			}
+		}catch (Exception e){
+			System.out.println("Error Al crear hilo"+e);
 		}
 	}
 	

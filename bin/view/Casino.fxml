@@ -5,65 +5,51 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="577.0" prefWidth="751.0" style="-fx-background-color: #9ab3f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CasinoController">
    <children>
-      <HBox alignment="CENTER" layoutX="-3.0" layoutY="106.0" prefHeight="244.0" prefWidth="751.0">
-         <children>
-            <ImageView fx:id="img1" fitHeight="122.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="img2" fitHeight="122.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="img3" fitHeight="121.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </HBox>
-      <VBox layoutX="72.0" layoutY="388.0" prefHeight="181.0" prefWidth="600.0">
-         <children>
-            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0" spacing="60.0">
-               <children>
-                  <Button fx:id="btnStopLeft" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnStopCenter" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnStopRight" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
-               <children>
-                  <Button fx:id="btnStart" mnemonicParsing="false" onAction="#start" style="-fx-background-color: #b9fffc;" text="START">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnStopAll" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #b9fffc;" text="STOP ALL">
-                     <font>
-                        <Font name="Baskerville Old Face" size="25.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-      <Label layoutX="254.0" layoutY="14.0" text="CasinUP" textFill="#b7ffff">
+      <ImageView fitHeight="577.0" fitWidth="812.0" layoutY="-3.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Resource/12611.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="280.0" layoutY="14.0" prefHeight="96.0" prefWidth="218.0" text="CasinUP" textFill="#b7ffff">
          <font>
             <Font name="Dyuthi Regular" size="67.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="472.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Resource/logo.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="btnStopLeft" layoutX="238.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #373a40;" text="Stop" textFill="#949494">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStopRight" layoutX="493.0" layoutY="419.0" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #373a40;" text="Stop" textFill="#909090">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStart" layoutX="679.0" layoutY="184.0" mnemonicParsing="false" onAction="#start" prefHeight="249.0" prefWidth="76.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStopAll" layoutX="331.0" layoutY="490.0" mnemonicParsing="false" onMouseClicked="#stop" prefHeight="62.0" prefWidth="162.0" style="-fx-background-color: #373a40;" text="Stop All" textFill="#a4a4a4">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStopCenter" layoutX="365.0" layoutY="418.0" mnemonicParsing="false" onMouseClicked="#stop" style="-fx-background-color: #373a40;" text="Stop" textFill="#8a8a8a">
+         <font>
+            <Font name="Baskerville Old Face" size="25.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="154.0" layoutX="237.0" layoutY="232.0" opacity="0.97" stroke="BLACK" strokeType="INSIDE" width="116.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="154.0" layoutX="357.0" layoutY="232.0" opacity="0.97" stroke="BLACK" strokeType="INSIDE" width="116.0" />
+      <Rectangle fx:id="r1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="154.0" layoutX="481.0" layoutY="232.0" opacity="0.97" stroke="BLACK" strokeType="INSIDE" width="116.0" />
+      <ImageView fx:id="img1" fitHeight="154.0" fitWidth="116.0" layoutX="237.0" layoutY="235.0" pickOnBounds="true" />
+      <ImageView fx:id="img2" fitHeight="154.0" fitWidth="116.0" layoutX="354.0" layoutY="235.0" pickOnBounds="true" />
+      <ImageView fx:id="img3" fitHeight="154.0" fitWidth="116.0" layoutX="481.0" layoutY="235.0" pickOnBounds="true" />
    </children>
 </AnchorPane>
