@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +32,12 @@ public class CasinoController implements Initializable,Observer{
     @FXML
     private Button btnStart;
 
+	@FXML
+	private Button btnStopLeft;
+	@FXML
+	private Button btnStopCenter;
+	@FXML
+	private Button btnStopRight;
     @FXML
     private Button btnStopAll;
     
@@ -43,10 +52,93 @@ public class CasinoController implements Initializable,Observer{
     
     @FXML
     void start(ActionEvent event) {
-    	try {
+    	empezar();
+    }
 
-			btnStopAll.setVisible(true);
+	@FXML
+    void stop(MouseEvent e) {
+    	detener(e);
+    }
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		StrImg.add("Resource/sandia.png");
+		StrImg.add("Resource/pina.png");
+		StrImg.add("Resource/pera.png");
+		btnStopRight.setVisible(false);
+		btnStopCenter.setVisible(false);
+		btnStopLeft.setVisible(false);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+        int turno;
+        turno = Integer.parseInt(arg.toString());
+        if(turno == 1){
+        	img1.setImage(new Image(imagen1.imagen(StrImg)));
+        	img2.setImage(new Image(imagen2.imagen(StrImg)));
+        	img3.setImage(new Image(imagen3.imagen(StrImg)));
+        }
+        if(turno == 2){
+        	img1.setImage(new Image(imagen1.imagen(StrImg)));
+        	img2.setImage(new Image(imagen2.imagen(StrImg)));
+        	img3.setImage(new Image(imagen3.imagen(StrImg)));
+        }
+        if(turno == 3){
+        	img1.setImage(new Image(imagen1.imagen(StrImg)));
+        	img2.setImage(new Image(imagen2.imagen(StrImg)));
+        	img3.setImage(new Image(imagen3.imagen(StrImg)));
+        }
+	}
+
+	public void detener(MouseEvent e){
+		try {
+			if(e.getSource() ==btnStopLeft) {
+				System.out.println("izquierda");
+				imagen1.exit(img1);
+				btnStopCenter.setVisible(true);
+			}
+			if(e.getSource() ==btnStopCenter) {
+				System.out.println("centro");
+				imagen2.exit(img2);
+				btnStopRight.setVisible(true);
+			}
+			if(e.getSource() ==btnStopRight) {
+				System.out.println("derecha");
+				imagen3.exit(img3);
+				if(imagen1.c.equals(imagen2.c)) {
+					if(imagen2.c.equals(imagen3.c)) {
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Felicidades");
+						alert.setHeaderText(null);
+						alert.setContentText("Haz ganado!!");
+						alert.showAndWait();
+					}else{
+						Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("F");
+						alert.setHeaderText(null);
+						alert.setContentText("Vuelve a intentarlo!!");
+						alert.showAndWait();
+					}
+				}else{
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("F");
+					alert.setHeaderText(null);
+					alert.setContentText("Vuelve a intentarlo!!");
+					alert.showAndWait();
+				}
+			}
+			if(e.getSource() ==btnStopAll) {
+				System.exit(0);
+			}
+		}catch (Exception ex){
+			System.out.println("Stop");
+		}
+	}
+
+	public void empezar(){
+		try {
+			btnStopLeft.setVisible(true);
 			img1 hilo = new img1();
 			img2 hilo2 = new img2();
 			img3 hilo3 = new img3();
@@ -71,93 +163,5 @@ public class CasinoController implements Initializable,Observer{
 		}catch (IllegalThreadStateException ex){
 			System.out.println("Error al iniciar Hilos"+ex);
 		}
-    }
-
-	@FXML
-    void stop(MouseEvent e) {
-    	try {
-			if(e.getSource() ==btnStopAll) {
-				imagen1.exit(img1);
-				imagen2.exit(img2);
-				imagen3.exit(img3);
-				System.out.println(imagen2.c);
-				System.out.println(imagen3.c);
-				System.out.println(imagen1.c);
-				System.out.println("\n");
-
-				if(imagen1.c.equals("Resource/sandia.png") && imagen2.c.equals("Resource/sandia.png") && imagen3.c.equals("Resource/sandia.png")){
-					System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
-					hiloSemaforo3.suspend();
-					hiloSemaforo.suspend();
-					hiloSemaforo2.suspend();
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setTitle("Felicidades");
-					alert.setHeaderText(null);
-					alert.setContentText("Ganaste");
-
-					alert.showAndWait();
-				}else if(imagen1.c.equals("Resource/pera.png") && imagen2.c.equals("Resource/pera.png") && imagen3.c.equals("Resource/pera.png")){
-						System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
-					hiloSemaforo3.suspend();
-					hiloSemaforo.suspend();
-					hiloSemaforo2.suspend();
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setTitle("Felicidades");
-					alert.setHeaderText(null);
-					alert.setContentText("Ganaste");
-
-					alert.showAndWait();
-				}else if(imagen1.c.equals("Resource/pina.png") && imagen2.c.equals("Resource/pina.png") && imagen3.c.equals("Resource/pina.png")){
-						System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
-					hiloSemaforo3.suspend();
-					hiloSemaforo.suspend();
-					hiloSemaforo2.suspend();
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setTitle("Felicidades");
-					alert.setHeaderText(null);
-					alert.setContentText("Ganaste");
-
-					alert.showAndWait();
-				}else{
-					Alert alert = new Alert(Alert.AlertType.INFORMATION);
-					alert.setTitle("Sigue intentando");
-					alert.setHeaderText(null);
-					alert.setContentText(":(");
-				}
-
-			}
-		}catch (Exception ex){
-			System.out.println("Stop");
-		}
-    }
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		StrImg.add("Resource/sandia.png");
-		StrImg.add("Resource/pina.png");
-		StrImg.add("Resource/pera.png");
-		btnStopAll.setVisible(false);
 	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-        int turno;
-        turno = Integer.parseInt(arg.toString());
-        if(turno == 1){
-        	img1.setImage(new Image(imagen1.imagen(StrImg)));
-        	img2.setImage(new Image(imagen2.imagen(StrImg)));
-        	img3.setImage(new Image(imagen3.imagen(StrImg)));
-        }
-        if(turno == 2){
-        	img1.setImage(new Image(imagen1.imagen(StrImg)));
-        	img2.setImage(new Image(imagen2.imagen(StrImg)));
-        	img3.setImage(new Image(imagen3.imagen(StrImg)));
-        }
-        if(turno == 3){
-        	img1.setImage(new Image(imagen1.imagen(StrImg)));
-        	img2.setImage(new Image(imagen2.imagen(StrImg)));
-        	img3.setImage(new Image(imagen3.imagen(StrImg)));
-        }
-	}
-
 }

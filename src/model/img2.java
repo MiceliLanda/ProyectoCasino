@@ -9,30 +9,15 @@ public class img2 extends Observable implements Runnable{
 	
 	private int turno;
 	private boolean exit =true;
-	private String url;
-	public String c;
-	private boolean f = false;
-	public String string;
-
+	private String url ="";
+	public String c ="";
 
 	public String imagen(ArrayList<String> array) {
 		if(exit ==false) {
 			for (int i=0;i<array.size();i++){
 				if(array.get(i).equals(url)){
-					//	System.out.println("Array"+array.get(i));
-					if(array.get(i).equals(array.get(0))){
-						c=array.get(i);
-						//System.out.println(c);
-					}
-					if(array.get(i).equals(array.get(1))){
-						c=array.get(i);
-						//System.out.println(c);
-					}
-					if(array.get(i).equals(array.get(2))){
-						c=array.get(i);
-						//System.out.println(c);
-					}
-					//return array.get(i);
+					c = url;
+					return array.get(i);
 				}
 			}
 		}
@@ -49,7 +34,6 @@ public class img2 extends Observable implements Runnable{
 			while(exit==true) {
 				setChanged();
 				this.notifyObservers(String.valueOf(turno));
-			//	System.out.println("hilo2"+turno);
 				try {
 					Thread.sleep(1000);
 				}catch(InterruptedException e) {
@@ -58,11 +42,7 @@ public class img2 extends Observable implements Runnable{
 				if(turno ==3) {
 					turno=1;
 				}
-				if( f == true){
-					string = c;
-				}
 				else {
-
 					turno++;
 				}
 			}
@@ -74,7 +54,6 @@ public class img2 extends Observable implements Runnable{
 	public void exit(ImageView str) {
 		//System.out.println("URL imagen "+str.getImage().getUrl().substring(43));
 		url = str.getImage().getUrl().substring(40);
-		//System.out.println(url);
 		exit = false;
 	}
 }
