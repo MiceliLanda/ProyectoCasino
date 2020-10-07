@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,15 +25,6 @@ public class CasinoController implements Initializable,Observer{
 
     @FXML
     private ImageView img3;
-
-    @FXML
-    private Button btnStopLeft;
-
-    @FXML
-    private Button btnStopCenter;
-
-    @FXML
-    private Button btnStopRight;
 
     @FXML
     private Button btnStart;
@@ -52,11 +44,9 @@ public class CasinoController implements Initializable,Observer{
     @FXML
     void start(ActionEvent event) {
     	try {
+
 			btnStopAll.setVisible(true);
-			btnStopCenter.setVisible(true);
-			btnStopLeft.setVisible(true);
-			btnStopRight.setVisible(true);
-			btnStart.setVisible(false);
+
 			img1 hilo = new img1();
 			img2 hilo2 = new img2();
 			img3 hilo3 = new img3();
@@ -72,13 +62,12 @@ public class CasinoController implements Initializable,Observer{
 			hiloSemaforo.setDaemon(true);
 			hiloSemaforo2.setDaemon(true);
 			hiloSemaforo3.setDaemon(true);
-			hiloSemaforo.getName();
-			hiloSemaforo2.getName();
-			hiloSemaforo3.getName();
-
 			hiloSemaforo.start();
 			hiloSemaforo2.start();
 			hiloSemaforo3.start();
+			hiloSemaforo.resume();
+			hiloSemaforo2.resume();
+			hiloSemaforo3.resume();
 		}catch (IllegalThreadStateException ex){
 			System.out.println("Error al iniciar Hilos"+ex);
 		}
@@ -87,26 +76,58 @@ public class CasinoController implements Initializable,Observer{
 	@FXML
     void stop(MouseEvent e) {
     	try {
-			if(e.getSource() ==btnStopLeft) {
+			if(e.getSource() ==btnStopAll) {
 				imagen1.exit(img1);
-			}
-			if(e.getSource() ==btnStopRight) {
-				System.out.println("derecha");
-				imagen3.exit(img3);
-			}
-			if(e.getSource() ==btnStopCenter) {
-				System.out.println("centro");
 				imagen2.exit(img2);
+				imagen3.exit(img3);
+				System.out.println(imagen2.c);
+				System.out.println(imagen3.c);
+				System.out.println(imagen1.c);
+				System.out.println("\n");
+
+				if(imagen1.c.equals("Resource/sandia.png") && imagen2.c.equals("Resource/sandia.png") && imagen3.c.equals("Resource/sandia.png")){
+					System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
+					hiloSemaforo3.suspend();
+					hiloSemaforo.suspend();
+					hiloSemaforo2.suspend();
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Felicidades");
+					alert.setHeaderText(null);
+					alert.setContentText("Ganaste");
+
+					alert.showAndWait();
+				}else if(imagen1.c.equals("Resource/pera.png") && imagen2.c.equals("Resource/pera.png") && imagen3.c.equals("Resource/pera.png")){
+						System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
+					hiloSemaforo3.suspend();
+					hiloSemaforo.suspend();
+					hiloSemaforo2.suspend();
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Felicidades");
+					alert.setHeaderText(null);
+					alert.setContentText("Ganaste");
+
+					alert.showAndWait();
+				}else if(imagen1.c.equals("Resource/pina.png") && imagen2.c.equals("Resource/pina.png") && imagen3.c.equals("Resource/pina.png")){
+						System.out.println("son iguales todas"+imagen1.imagen(StrImg)+imagen2.imagen(StrImg)+imagen3.imagen(StrImg));
+					hiloSemaforo3.suspend();
+					hiloSemaforo.suspend();
+					hiloSemaforo2.suspend();
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Felicidades");
+					alert.setHeaderText(null);
+					alert.setContentText("Ganaste");
+
+					alert.showAndWait();
+				}else{
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Sigue intentando");
+					alert.setHeaderText(null);
+					alert.setContentText(":(");
+				}
 
 			}
-			if(e.getSource() ==btnStopAll) {
-				System.out.println("todos");
-				imagen1.exit(img1);
-				imagen2.exit(img2);
-				imagen3.exit(img3);
-			}
 		}catch (Exception ex){
-			System.out.println("Error al detener Hilo"+ex);
+			System.out.println("Stop");
 		}
     }
 
@@ -116,9 +137,6 @@ public class CasinoController implements Initializable,Observer{
 		StrImg.add("Resource/pina.png");
 		StrImg.add("Resource/pera.png");
 		btnStopAll.setVisible(false);
-		btnStopCenter.setVisible(false);
-		btnStopLeft.setVisible(false);
-		btnStopRight.setVisible(false);
 	}
 
 	@Override
