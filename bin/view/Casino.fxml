@@ -15,7 +15,7 @@
             <Image url="@../Resource/12611.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="280.0" layoutY="14.0" prefHeight="96.0" prefWidth="218.0" text="CasinUP" textFill="#b7ffff">
+      <Label layoutX="280.0" layoutY="14.0" prefHeight="99.0" prefWidth="252.0" text="CasinUP" textFill="#b7ffff">
          <font>
             <Font name="Dyuthi Regular" size="67.0" />
          </font>
